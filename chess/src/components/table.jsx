@@ -2,7 +2,7 @@ import React from 'react';
 import './table.css';
 import b_queen from './assets/black_queen.svg';
 import w_queen from './assets/white_queen.svg';
-import {isCheck,isCheckMate , filterPossibleMoves} from './utilities/utility';
+import {isCheck,isCheckMate } from './utilities/utility';
 import PlayerStats from './gameplay';
 
 const Table = ({white,black,Piece,Player1,Player2}) => {
@@ -22,7 +22,7 @@ const Table = ({white,black,Piece,Player1,Player2}) => {
         const [blackPieces,setBlack] = React.useState(black);
         const [whitePieces,setWhite] = React.useState(white);
         const [possibleMoves, setPossibleMoves] = React.useState([]);
-        const [ board, setBoard] =React.useState([]);
+        let [ board, setBoard] =React.useState([]);
         const [currentPlayer,setCurrentPlayer] = React.useState(Player1);
         const [selectedPiece,setSelectedPiece] =React.useState(new Piece);
         
@@ -30,8 +30,7 @@ const Table = ({white,black,Piece,Player1,Player2}) => {
                 if (piece == null || !(piece.color == currentPlayer.color)) return;
                 else {
                  return () => {
-                     piece.possible_moves=piece.get_possible_moves(board);
-                     const moves = piece.possible_moves;
+                     const moves = piece.possible_moves(board,whitePieces,blackPieces);;
                      setPossibleMoves(moves);
                      setSelectedPiece(piece);
                 }
@@ -49,7 +48,7 @@ const Table = ({white,black,Piece,Player1,Player2}) => {
         const stylePossibleMove=(i,j)=>{
                 const isEmpty = (x, y) => {return  board[y][x] === null;}
                 return {
-                        boxShadow: isEmpty(i,j) ?'inset 0px 0px 10px 5px rgba(1, 1, 1, 0.4)' :'inset 0px 0px 15px 6px rgb(236, 10, 10,0.9)'
+                        boxShadow: isEmpty(i,j) ?'inset 0px 0px 10px 5px rgba(255,255,255)' :'inset 0px 0px 15px 6px rgb(236, 10, 10,0.9)'
                 }
         }
         const selectedStyle ={
