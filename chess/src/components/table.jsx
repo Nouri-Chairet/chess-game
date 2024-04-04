@@ -54,7 +54,7 @@ const Table = ({board,setBoard,Player1,Player2,MovesHistory,setMovesHistory}) =>
                         backgroundPosition: 'center',}
         }
         const selectedStyle ={
-                boxShadow: 'inset 0px 0px 10px 10px #0bff9d89',
+             boxShadow: 'inset 0px 0px 10px 10px  #aca56fbc',
         }
         const checkStyle={
                 boxShadow:'inset 0px 0px 10px 10px #c13636 '
