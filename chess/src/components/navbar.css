@@ -1,6 +1,5 @@
 .NavBar {
-  height:10vh;
-  background: linear-gradient(89deg, rgb(24, 12, 52) 20%, rgb(50, 86, 109) 80%);
+  height:8vh;
   width: 100%;
   display: flex;
   align-items: center; 
@@ -9,21 +8,22 @@
   top: 0;
   left: 0;
   z-index: 1;
+  background: #1e13689b;
+  -webkit-backdrop-filter: blur( 3px );
+  backdrop-filter: blur( 3px );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 }
 .titles{
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-left:30px;
   width: 30%;
 }
-.titles img ,.titles p{
-  margin: 0;
-  width: fit-content;
-  height: fit-content !important;
-}
-.buttons-container {
 
+.buttons-container {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   justify-content: space-around;
   gap: 20px;
@@ -32,62 +32,26 @@
   
 }
 #icon{
-  filter:contrast(3);
-  max-height: 90px;
-  filter: sepia(60%);
+  overflow: hidden;
+  max-height: 80px;
 }
 .primary-button {
-  font-family: 'Valorant', sans-serif;
-  color: rgb(254, 240, 193);
+  padding: 0;
+
+  height: 40px;
+  width: fit-content;
+  color: rgb(255, 255, 255);
   cursor: pointer;
-  font-size: 16px;
   font-weight: bold;
-  letter-spacing: 0.05rem;
-  border: 1px solid #0E1822;
+  letter-spacing: 0.09rem;
   padding: 0.8rem 2.1rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: %23ffbf70 /* fill: %230E1822; */ %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
-  background-color: #0E1822;
-  background-size: 200%;
-  background-position: 200%;
-  background-repeat: no-repeat;
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
-  -webkit-transition-property: background-position, border, color;
-  transition-property: background-position, border, color;
-  position: relative;
-  z-index: 1;
+  background-color: #07002c;
  }
  
  .primary-button:hover {
-  border: 1px solid #ffbf70;
-  color: rgb(10, 19, 34);
-  background-position: 40%;
+  border: 1px solid rgb(216, 222, 255);
+  transition: ease-in-out all 0.3s;
+  color: rgb(255, 255, 255);
+  background-color: #07012aa1
  }
 
- 
-@media only screen and (max-width: 800px) {
-  .NavBar {
-      display: flex;
-      justify-content: space-around;
-  }
-
-.buttons{ 
-   width: 35%;
-}
-  .NavBar button{
-    font-size: 15px;
-    font-weight: 600;
-  }
-  .titles{
-    width:60%;
-  }
-
-  .NavBar p {
-      margin-left: 10%;
-      font-size: 1.7rem;
-  }
-
-  .NavBar h3 {
-      font-size: 3.7rem;
-  }
-}

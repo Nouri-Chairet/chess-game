@@ -1,4 +1,4 @@
-import {isCheck,get_possible_moves} from './utility';
+import {castling,isCheck,get_possible_moves} from './utility';
 class Piece {
     constructor(color, current_pos_x, current_pos_y,image,name) {
         this.color = color;
@@ -11,27 +11,28 @@ class Piece {
         this.current_pos_x=x;
         this.current_pos_y=y;
     }
-    possible_moves(board,whitePieces,blackPieces) {
+    possible_moves(board,movesHistory) {
         let [x,y] = [this.current_pos_x,this.current_pos_y];
-        let possible_moves=get_possible_moves(board,this);
+        let possible_moves=get_possible_moves(board,this,movesHistory);
+        let filtredMoves=[];
         for (const move of possible_moves) {
-                // Simulate the move
-                let temp_piece = board[move[1]][move[0]];
-
-                board[move[1]][move[0]] = this;
-                board[y][x] = null;
-                
-                if (isCheck(board,whitePieces,blackPieces,this.color) ) {
-                    console.log(board);
-                    console.log(`${this.name} can move to ${move[0]} ${move[1]}`);
-                    possible_moves.splice(possible_moves.indexOf(move), 1);
+            let temp_piece = board[move[1]][move[0]];
+            board[move[1]][move[0]] = this;
+            board[y][x] = null;
+            if (!isCheck(board,this.color,movesHistory) ) {
+                filtredMoves.push(move)
                 }
-              
-                board[y][x] = this;
-                board[move[1]][move[0]] = temp_piece;
-            }
+            board[y][x] = this;
+            board[move[1]][move[0]] = temp_piece;
+        }
+        if(this.name=="rook"){
+            console.log(filtredMoves);
         
-    return possible_moves;
+        }
+        if(castling(this,board,movesHistory).length>0){
+            filtredMoves.push(...castling(this,board,movesHistory));
+        }
+        return filtredMoves;
 
     }
 }

@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "lodash": "^4.17.21"
+    "@nextui-org/react": "^2.2.10",
+    "lodash": "^4.17.21",
+    "react-countdown": "^2.3.5",
+    "react-countdown-circle-timer": "^3.2.1",
+    "react-router-dom": "^6.22.3"
   }
 }
