@@ -1,9 +1,11 @@
 import React from 'react';
-import icon from './assets/icon.svg'
+import icon from './assets/logo.jpg'
 import './navbar.css';
 
 function Navbar() {
     return (
+        <div className='nav-container'>
+
         <nav className="NavBar" >
            <div className='titles'>
 
@@ -22,6 +24,7 @@ function Navbar() {
            </div>
             
         </nav>
+        </div>
     );
 }
 export default Navbar

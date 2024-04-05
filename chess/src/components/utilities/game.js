@@ -18,13 +18,11 @@ import w_pawn from '../assets/white_pawn.svg';
 
 class Player {
     constructor(color,name){
+      this.score=0;
       this.takeOvers=[];
       this.timer=600;
       this.name=name;
       this.color=color;
-    }
-    takeOver(piece){
-      this.takeOvers.push(piece);
     }
   }
  export class Game {
@@ -41,34 +39,34 @@ class Player {
         let pawns =[];
           for (let i=0;i<8;i++)     
         {
-        pawns.push(new Piece('white', i, 6,  w_pawn, 'pawn'));
+        pawns.push(new Piece('white', i, 6,  w_pawn, 'pawn',1));
                }
         const white = [     
          ...pawns,
-          new Piece('white', 2, 7,  w_bishop, 'bishop'),
-          new Piece('white', 5, 7,  w_bishop, 'bishop'),
-          new Piece('white', 0, 7,  w_rock, 'rook'),
-          new Piece('white', 7, 7,  w_rock, 'rook'),
-          new Piece('white', 1, 7,  w_knight, 'knight'),
-          new Piece('white', 6, 7, w_knight, 'knight'),
-          new Piece('white', 4, 7,  w_king, 'king'),
-          new Piece('white', 3, 7,  w_queen, 'queen'),
+          new Piece('white', 2, 7,  w_bishop, 'bishop',3),
+          new Piece('white', 5, 7,  w_bishop, 'bishop',3),
+          new Piece('white', 0, 7,  w_rock, 'rook',5),
+          new Piece('white', 7, 7,  w_rock, 'rook',5),
+          new Piece('white', 1, 7,  w_knight, 'knight',3),
+          new Piece('white', 6, 7, w_knight, 'knight',3),
+          new Piece('white', 4, 7,  w_king, 'king',0),
+          new Piece('white', 3, 7,  w_queen, 'queen',9),
          ];
         let pawns_b =[];
         for (let i=0;i<8;i++)
         {
-         pawns_b.push(new Piece('black', i, 1, b_pawn, 'pawn'));
+         pawns_b.push(new Piece('black', i, 1, b_pawn, 'pawn',1));
         }
         const black = [
   ...pawns_b,
-    new Piece('black', 2, 0, b_bishop, 'bishop'),
-    new Piece('black', 5, 0, b_bishop, 'bishop'),
-    new Piece('black', 0, 0, b_rock, 'rook'),
-    new Piece('black', 7, 0, b_rock, 'rook'),
-    new Piece('black', 1, 0, b_knight, 'knight'),
-    new Piece('black', 6, 0, b_knight, 'knight'),
-    new Piece('black', 4, 0, b_king, 'king'),
-    new Piece('black', 3, 0, b_queen, 'queen'),
+    new Piece('black', 2, 0, b_bishop, 'bishop',3),
+    new Piece('black', 5, 0, b_bishop, 'bishop',3),
+    new Piece('black', 0, 0, b_rock, 'rook',5),
+    new Piece('black', 7, 0, b_rock, 'rook',5),
+    new Piece('black', 1, 0, b_knight, 'knight',3),
+    new Piece('black', 6, 0, b_knight, 'knight',3),
+    new Piece('black', 4, 0, b_king, 'king',3),
+    new Piece('black', 3, 0, b_queen, 'queen',3),
         ];
         for (let i = 0; i < 8; i++) {
             this.board[i] = [];
@@ -78,7 +76,7 @@ class Player {
         }
     }
     isGameOver() {
-        if (isCheckMate(this.board, this.currentPlayer.color,movesHistory)) {
+        if (isCheckMate(this.board, this.currentPlayer.color,this.MovesHistory)) {
             this.winner = this.currentPlayer.color == "white" ? this.Player2 : this.Player1;
             return true;
         }
@@ -92,15 +90,4 @@ class Player {
         }
         return false;
     }
-    // makeAMove(x, y, piece) {
-    //     if (this.board[y][x] != null) {
-    //         this.currentPlayer.color == "black" ? this.Player2.takeOver(this.board[y][x]) : this.Player1.takeOver(this.board[y][x]);
-    //     }
-    //     let newBoard = this.board;
-    //     newBoard[piece.current_pos_y][piece.current_pos_x] = null;
-    //     piece.setCurrentPos(x, y);
-    //     newBoard[y][x] = piece;
-    //     this.board = newBoard;
-    //     this.currentPlayer = this.currentPlayer.color == "white" ? this.Player2 : this.Player1;
-    // }
 }

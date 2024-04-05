@@ -1,6 +1,6 @@
 import { isCheck, } from "./utility";
 export function isCheckMate(board,color,movesHistory){
-    if (isCheck(board,color) ){
+    if (isCheck(board,color,movesHistory) ){
         for(let row of board){
             for(let  piece of row){
                 if (piece && piece.color==color && piece.possible_moves(board,movesHistory).length>0 ){
@@ -15,7 +15,7 @@ export function isCheckMate(board,color,movesHistory){
     }
 }
 export const isStalemate = (board, color,movesHistory) => {
-    if (!isCheck(board,color) ){
+    if (!isCheck(board,color,movesHistory) ){
         for(let row of board){
             for(let  piece of row){
                 if (piece && piece.color==color && piece.possible_moves(board,movesHistory).length>0 ){

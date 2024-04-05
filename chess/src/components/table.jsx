@@ -1,10 +1,14 @@
 import React from 'react';
 import './table.css';
 
+import capture from './audio/capture.mp3';
+import castle from './audio/castle.mp3';
+import check from './audio/move-check.mp3';
+import move from './audio/move-self.mp3';
+import promotion from './audio/promote.mp3';
 import {isCheck} from './utilities/utility';
 import Piece from './utilities/piece.js';
 
-import PlayerStats from './playerStats.jsx';
 import dot from './assets/dot.svg';
 import circle from './assets/circle.svg';
 
@@ -18,16 +22,21 @@ import b_rook from './assets/black_rock.svg';
 import b_bishop from './assets/black_bishop.svg';
 import b_knight from './assets/black_knight.svg';
 
-const Table = ({board,setBoard,Player1,Player2,MovesHistory,setMovesHistory}) => {
+const sounds = {
+  capture: new Audio(capture),
+  castle: new Audio(castle),
+  check: new Audio(check),
+  move: new Audio(move),
+  promotion: new Audio(promotion),
+};
+const Table = ({board,setBoard,Player1,Player2,setPlayer1,setPlayer2,MovesHistory,setMovesHistory,currentPlayer,setCurrentPlayer}) => {
         
         const [possibleMoves, setPossibleMoves] = React.useState([]);
-        const [currentPlayer,setCurrentPlayer] = React.useState(Player1);
         const [selectedPiece,setSelectedPiece] =React.useState(new Piece);
-        const [player1Time,setPlayer1Time]=React.useState(Player1.time);
-        const [player2Time,setPlayer2Time]=React.useState(Player2.time);
+        
         const suggest = (piece) => {
 
-                if (piece == null || !(piece.color == currentPlayer.color)) return;
+                if (piece == null || (piece.color != currentPlayer.color)) return;
                 else {
                  return () => {
                      const moves = piece.possible_moves(board,MovesHistory);
@@ -69,32 +78,56 @@ const Table = ({board,setBoard,Player1,Player2,MovesHistory,setMovesHistory}) =>
                 switch(name){
                    case "queen":
                         piece.image= piece.color=="white" ? queen : b_queen;
+                        piece.value=9;
                         break;
                    case "rook":
                         piece.image= piece.color=="white" ? rook : b_rook;
+                        piece.value=5;
                         break;
                    case "bishop":
                         piece.image= piece.color=="white" ? bishop : b_bishop;
+                        piece.value=3;
                         break;
                    case "knight":
                         piece.image= piece.color=="white" ? knight : b_knight;
+                        piece.value=3;
                         break;
                 
                 }
                 setBoard([...board]);
+                sounds.promotion.play();
                 setSelectedPiece([]);
-
         };
+        const capture=(takenPiece)=>{
+                if( currentPlayer.color==Player2.color){
+                               
+                        setPlayer2(prev => ({
+                                ...prev,
+                                takeOvers: [...prev.takeOvers, takenPiece],
+                                score: prev.score+takenPiece.value
+                            }))
+                         setPlayer1(prev => ({...prev,score:prev.score-takenPiece.value}))
+                } 
+                 else{
+                         setPlayer1(prev=>(
+                                 {
+                                 ...prev,
+                                 takeOvers: [...prev.takeOvers, takenPiece],
+                                 score: prev.score+takenPiece.value
+                          } ));
+                         setPlayer2(prev=>({...prev,score:prev.score-takenPiece.value}));
+                 }
+        }
         const makeAMove = (x,y,piece) =>{
-                
-                const isblack = piece.color === "black";
+                let takenPiece = board[y][x];
+                 return ()=>{  
+                    let newBoard = [...board];
+                    let move="move";
 
-
-                 return ()=>{
-                    let newBoard = board;
-                    if (board[y][x] != null){
-                        isblack ? Player2.takeOver(board[y][x]) :Player1.takeOver(board[y][x]);
-                        //`${MovesHistory.length%2}.${piece.name}x${String.fromCharCode(x+65)}${8-y}`
+                    
+                    if (takenPiece != null){
+                        capture(takenPiece);
+                        move="capture";
                     }
                     //for the castling move we need to move the rook as well
                     if(piece.name=="king" && Math.abs(piece.current_pos_x-x)==2){
@@ -110,27 +143,36 @@ const Table = ({board,setBoard,Player1,Player2,MovesHistory,setMovesHistory}) =>
 
                         newBoard[y][x==2?0:7]=null;
                         rook.setCurrentPos(x==2?3:5,y);
-                    
+                        move="castle";
                     }
                     //for the en passant rule
                     if(MovesHistory.length>0){
                         let lastMove = MovesHistory[MovesHistory.length-1];
                         if (lastMove.piece=="pawn" && Math.abs(lastMove.prevPos[1]-lastMove.newPos[1])==2 && (lastMove.newPos[0]==piece.current_pos_x+1 || lastMove.newPos[0]==piece.current_pos_x-1) && lastMove.newPos[1]==piece.current_pos_y){
+                                capture(board[lastMove.newPos[1]][lastMove.newPos[0]]);
                                 newBoard[lastMove.newPos[1]][lastMove.newPos[0]]=null;
+                                move="capture"; 
                         }
-                        
+                }
+                   
+                      
+                    
+                    let color = currentPlayer.color==Player2.color ? Player1.color : Player2.color;
+                    if(isCheck(board,color,MovesHistory)) {
+                        move="check";
                     }
-                    MovesHistory.push({ piece: piece.name, prevPos: [piece.current_pos_x, piece.current_pos_y], newPos: [x, y], takeOver: board[y][x] });
+                    setMovesHistory(prev=>([...prev,{ piece: piece.name, prevPos: [piece.current_pos_x, piece.current_pos_y], newPos: [x, y], takeOver: board[y][x] }]));
                     newBoard[piece.current_pos_y][piece.current_pos_x]=null;
                     piece.setCurrentPos(x,y);
                     newBoard[y][x]=piece;
                     setBoard(newBoard);
                     setPossibleMoves([]);
-                    setCurrentPlayer(currentPlayer.color=="white" ? Player2 : Player1 )
+                    setCurrentPlayer(currentPlayer.color==Player1.color ? Player2 : Player1 );
+                    sounds[move].play();
+                   
                 }
         
 }  
-
 return (
                 <div className='container-chess-table'>
                 <div className="chess-table">
@@ -158,7 +200,8 @@ return (
                                                     onClick={
                                                             isPossibleMove([i,j]) ? 
                                                             makeAMove(i,j,selectedPiece) :
-                                                            suggest(element)}
+                                                            suggest(element)
+                                                        }
                                                             >
                                                 {element != null ? 
                                                  (      (element.name=="pawn" && ( j==7 || j==0 ) ) ?
@@ -168,6 +211,12 @@ return (
                                                                 <option value="bishop">Bishop</option>
                                                                 <option value="knight">Knight</option>
                                                         </select>
+                                                        // <div>
+                                                        //         <img src={element.image} alt={element.name} />
+                                                        //         <img src={images[element.color][element.name]} alt={element.name} />
+                                                        //         <img src={images[element.color][element.name]} alt={element.name} />
+                                                        //         <img src={images[element.color][element.name]} alt={element.name} />
+                                                        // </div>
                                                         :
                                                         <img
                                                         style={element.color==currentPlayer.color && element.name=="king" && isCheck(board,currentPlayer.color,MovesHistory) ? checkStyle : {}}

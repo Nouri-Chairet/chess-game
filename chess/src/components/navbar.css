@@ -1,3 +1,4 @@
+
 .NavBar {
   height:8vh;
   width: 100%;
@@ -8,11 +9,12 @@
   top: 0;
   left: 0;
   z-index: 1;
-  background: #1b044992;
+  background: #2a0d658d;
   -webkit-backdrop-filter: blur( 3px );
   backdrop-filter: blur( 5px );
   box-shadow: 0 4px 12px 0px rgb(0, 4, 66);
 }
+
 .titles{
   display: flex;
   justify-content: center;
@@ -33,7 +35,9 @@
 }
 #icon{
   overflow: hidden;
-  max-height: 80px;
+  max-height: 0px;
+  mix-blend-mode: multiply;
+
 }
 .primary-button {
   padding: 0;

@@ -1,6 +1,7 @@
 import {castling,isCheck,get_possible_moves} from './utility';
 class Piece {
-    constructor(color, current_pos_x, current_pos_y,image,name) {
+    constructor(color, current_pos_x, current_pos_y,image,name,value) {
+        this.value =value;
         this.color = color;
         this.current_pos_x = current_pos_x;
         this.current_pos_y = current_pos_y;

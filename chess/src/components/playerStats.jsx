@@ -2,33 +2,30 @@ import React from 'react'
 import './playerStats.css';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
-const playerStats = ({name,takeOvers,active}) => {
-  const children = ({ remainingTime }) => {
-    const minutes = Math.floor(remainingTime / 60)
-    const seconds = remainingTime % 60
-  
-    return `${minutes}:${seconds}`
-  }
+
+const playerStats = ({player,setPlayer,active}) => {
+ 
   return (
     <div className={'card'}>
-        <p className='playerName'>{name}</p>
+        <p className='playerName'>{player.name}</p>
       <div className='count'>
           <CountdownCircleTimer
-            isPlaying={true}
-            duration={600}
+            isPlaying={active}
+            duration={player.timer}
             colors={["#00000"]}
             strokeWidth={2}
             size={0}
             onComplete={() => console.log('Timer completed')}
-            updateInterval={0.5} 
+            onUpdate={(remainingTime) => setPlayer({...player,remainingTime}) }
+            updateInterval={0.5}
          >
-    {({ remainingTime }) =>Math.trunc( remainingTime/60)+":"+  remainingTime%60}
+    {({ remainingTime }) =>Math.floor( remainingTime/60)+":"+  remainingTime%60}
         </CountdownCircleTimer>
       </div>
          <div className='pieces-taken'>
                {
-                takeOvers.length >0 ?
-                takeOvers.map(element =>{
+                player.takeOvers.length >0 ?
+                player.takeOvers.map(element =>{
                         return (
                             <img
                             height={40}
@@ -41,6 +38,13 @@ const playerStats = ({name,takeOvers,active}) => {
                }
                
          </div>
+               {
+                player.score<=0?<></>:
+                <p className='score'>
+                   +{player.score}
+                </p>
+                  
+               }
     </div>
   )
 }
