@@ -1,9 +1,14 @@
 {
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.4",
     "@nextui-org/react": "^2.2.10",
+    "axios": "^1.7.7",
     "lodash": "^4.17.21",
     "react-countdown": "^2.3.5",
     "react-countdown-circle-timer": "^3.2.1",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.22.3"
   }
 }

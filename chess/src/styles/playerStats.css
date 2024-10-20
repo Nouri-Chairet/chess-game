@@ -1,0 +1,60 @@
+.count{
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    font-weight: 900;
+    -webkit-text-stroke:1px #06015f;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.playerName {
+    margin: 0;
+    text-transform: capitalize;
+    text-align: center;
+    letter-spacing: 0.12rem;
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+    -webkit-text-stroke: 1px #000000; 
+}
+.score{
+    color: rgb(0, 0, 0);
+    font-size:1.3rem;
+    font-weight: 900;
+    -webkit-text-stroke: 1px #fff;
+
+}
+.card div{
+    padding: 10px;
+}
+.card {
+    margin: 10px;
+    min-width:200px ;
+    padding-top:20px;
+    height: 240px;
+    background: hsla(24, 71%, 11%, 0.949);
+    backdrop-filter: blur( 1px );
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    overflow: hidden;
+    border: #979797 2px solid;
+    border-radius: 27px;
+  }
+.pieces-taken{
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    align-items: center;
+  }
+.pieces-taken img{
+        width: 30px;
+        height: 30px;
+    }
+  
+
+  
+  
+  

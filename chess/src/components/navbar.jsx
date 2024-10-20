@@ -1,6 +1,6 @@
 import React from 'react';
-import icon from './assets/logo.jpg'
-import './navbar.css';
+import icon from '../assets/logo.jpg'
+import '../styles/navbar.css';
 
 function Navbar() {
     return (
@@ -8,7 +8,7 @@ function Navbar() {
 
         <nav className="NavBar" >
            <div className='titles'>
-
+            
             <img id='icon' src={icon} alt="icon" />
             {/* <p>Nouri chess</p> */}
            </div>

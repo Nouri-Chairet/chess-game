@@ -8,7 +8,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./assets/light-back.jpg');
+  background-image: url('./assetsD/dark-mode-backB.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* background-color: #1a1a1a; */
   background-repeat: repeat;
   background-size: cover;
 }

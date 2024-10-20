@@ -1,0 +1,61 @@
+
+.NavBar {
+  height:8vh;
+  width: 100%;
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: #48210ef5;
+  /* -webkit-backdrop-filter: blur( 3px ); */
+  backdrop-filter: blur( 2px );
+  box-shadow: 0 4px 12px 0px rgb(68, 25, 9);
+}
+
+.titles{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left:30px;
+  width: 30%;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  height: 200vh;
+  margin-right:10px;
+  width: fit-content;
+  
+}
+#icon{
+  overflow: hidden;
+  max-height: 0px;
+  mix-blend-mode: multiply;
+
+}
+.primary-button {
+  padding: 0;
+  height: vh;
+  width: fit-content;
+  color: rgba(34, 18, 4, 0.972);
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 0.09rem;
+  padding: 0.8rem 2.1rem;
+  background-color: #f4e5e1;
+ }
+ 
+ .primary-button:hover {
+  border: 1px solid rgb(216, 222, 255);
+  transition: ease-in-out all 0.3s;
+  color: rgb(255, 255, 255);
+  background-color: #2a0101a1
+ }
+

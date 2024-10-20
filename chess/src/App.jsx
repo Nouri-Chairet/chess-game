@@ -1,43 +1,68 @@
-import { useState ,useEffect } from 'react';
-import { Game } from './components/utilities/game.js';
+import { useState, useEffect } from 'react';
+import { Game } from './utilities/game.js';
 import Navbar from './components/navbar.jsx';
 import './App.css';
 import PlayerStats from './components/playerStats.jsx';
 import Table from './components/table.jsx';
-
+import WinnerModal from './components/EndGame.jsx';
 
 function App() {
-  
-  let [thisGame,setThisGame]=useState(new Game("player1","player2"));
-  thisGame.initBoard();
-  let [ board, setBoard] =useState(thisGame.board);
-  let [player1,setPlayer1]=useState(thisGame.Player1);
-  let [player2,setPlayer2]=useState(thisGame.Player2);
-  let [movesHistory,setMovesHistory]=useState(thisGame.MovesHistory);
-  let [activePlayer,setActivePlayer]=useState(thisGame.currentPlayer);
-  useEffect(()=>{
+  const [thisGame, setThisGame] = useState(() => {
+    const game = new Game("player1", "player2");
+    game.initBoard();
+    return game;
+  });
 
-  },[])
-  
+  const [board, setBoard] = useState(thisGame.board);
+  const [player1, setPlayer1] = useState(thisGame.Player1);
+  const [player2, setPlayer2] = useState(thisGame.Player2);
+  const [movesHistory, setMovesHistory] = useState(thisGame.MovesHistory);
+  const [activePlayer, setActivePlayer] = useState(thisGame.currentPlayer);
+  const [GameOver, setGameOver] = useState(false);
+  const [ComputerMode,setComputerMode]=useState(true)
+ 
+
+  const handleCloseModal = () => {
+    setGameOver(false);
+    setThisGame(()=>{
+       const game = new Game("player1", "player2");
+    game.initBoard();
+    return game;
+  })
+    setBoard(thisGame.board);
+    setPlayer1(thisGame.Player1);
+    setPlayer2(thisGame.Player2);
+    setMovesHistory(thisGame.MovesHistory);
+    setActivePlayer(thisGame.currentPlayer);
+
+};
   return (
     <>
       <Navbar />
       <div className='container'>
-
-      <div className="players-stats">
-      <PlayerStats player={player1} setPlayer={setPlayer1} active={activePlayer.color==player1.color} />
-      <PlayerStats player={player2} setPlayer={setPlayer2} active={activePlayer.color==player2.color}/>
-      </div>               
-      <Table 
-       board={board} setBoard={setBoard}
-       Player1={player1} Player2={player2}
-       MovesHistory={movesHistory} setMovesHistory={setMovesHistory}
-       setPlayer1={setPlayer1} setPlayer2={setPlayer2}
-       currentPlayer={activePlayer} setCurrentPlayer={setActivePlayer} 
+        <div className="players-stats">
+          <PlayerStats player={player1} setPlayer={setPlayer1} active={activePlayer.color === player2.color }setGameOver={setGameOver} />
+          <PlayerStats player={player2} setPlayer={setPlayer2} active={activePlayer.color === player1.color}setGameOver={setGameOver} />
+        </div>
+          <WinnerModal
+          isOpen={GameOver}
+          winner={"nouri"}
+          onClose={handleCloseModal}
       />
+      
+          <Table 
+            board={board} setBoard={setBoard}
+            Player1={player1} Player2={player2}
+            MovesHistory={movesHistory} setMovesHistory={setMovesHistory}
+            setPlayer1={setPlayer1} setPlayer2={setPlayer2}
+            currentPlayer={activePlayer} setCurrentPlayer={setActivePlayer} 
+            setGameOver={setGameOver}
+            ComputerMode={ComputerMode}
+          />
+       
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

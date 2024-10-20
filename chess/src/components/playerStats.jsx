@@ -1,9 +1,9 @@
 import React from 'react'
-import './playerStats.css';
+import '../styles/playerStats.css';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 
-const playerStats = ({player,setPlayer,active}) => {
+const playerStats = ({player,setPlayer,active,setGameOver}) => {
  
   return (
     <div className={'card'}>
@@ -15,8 +15,8 @@ const playerStats = ({player,setPlayer,active}) => {
             colors={["#00000"]}
             strokeWidth={2}
             size={0}
-            onComplete={() => console.log('Timer completed')}
-            onUpdate={(remainingTime) => setPlayer({...player,remainingTime}) }
+            onComplete={() => setGameOver(true)}
+            // onUpdate={(remainingTime) => setPlayer({...player,remainingTime}) }
             updateInterval={0.5}
          >
     {({ remainingTime }) =>Math.floor( remainingTime/60)+":"+  remainingTime%60}
@@ -25,13 +25,14 @@ const playerStats = ({player,setPlayer,active}) => {
          <div className='pieces-taken'>
                {
                 player.takeOvers.length >0 ?
-                player.takeOvers.map(element =>{
+                player.takeOvers.sort((a,b)=>a.value-b.value).map(element =>{
                         return (
                             <img
                             height={40}
                             className="piece"
                             src={element.image}
                             alt={element.name}
+                            key={element}
                             /> 
                         ) 
                 }) :<></>
