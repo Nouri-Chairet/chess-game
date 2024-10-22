@@ -29,7 +29,7 @@
   align-items: center;
   justify-content: space-around;
   gap: 20px;
-  height: 200vh;
+  height: 8vh;
   margin-right:10px;
   width: fit-content;
   
@@ -42,7 +42,7 @@
 }
 .primary-button {
   padding: 0;
-  height: vh;
+  height: 8vh;
   width: fit-content;
   color: rgba(34, 18, 4, 0.972);
   cursor: pointer;

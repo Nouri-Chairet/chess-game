@@ -1,0 +1,20 @@
+
+.container{
+  margin-top: 4vh;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  align-items: center;
+  height: 100%;
+
+}
+.players-stats{
+  margin:40px;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  justify-content: space-around;
+  height: 100%;
+  min-height: 60vh;
+}
+

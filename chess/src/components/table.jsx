@@ -69,11 +69,11 @@ const Table = React.memo(({board,setBoard,Player1,Player2,setPlayer1,setPlayer2,
                         .then(nextMove => {
                                 let words=nextMove.split(' ')
                                 nextMove=words[1];
-                                console.log(nextMove);
                                 let sourceSquareY=nextMove[0].charCodeAt(0)-'a'.charCodeAt(0);
                                 let sourceSquareX=8-Number(nextMove[1]);
                                 let destinationSquareY=nextMove[2].charCodeAt(0)-'a'.charCodeAt(0);
                                 let destinationSquareX=8-Number(nextMove[3]);
+                                setSelectedPiece(board[sourceSquareX][sourceSquareY])
                                 makeAMove(destinationSquareY,
                                         destinationSquareX,
                                         board[sourceSquareX][sourceSquareY],
@@ -143,7 +143,7 @@ return (
                                                                                                         :
                                                                                                         <img
                                                                                                                 style={element.color == currentPlayer.color && element.name == "king" && isCheck(board, currentPlayer.color, MovesHistory) ? checkStyle : {}}
-                                                                                                                className="piece"
+                                                                                                                className={`piece `}
                                                                                                                 src={element.image}
                                                                                                                 alt={element.name}
                                                                                                         />) : (<></>)}

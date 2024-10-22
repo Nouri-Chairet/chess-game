@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+*{
+    font-family: 'Montserrat', sans-serif;}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 20vh;
+    width: 100%;
+    margin:0;
+}
+.container-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin:0;
+    background: linear-gradient(to bottom, #000000, #33b3a0);
+}
+.card{
+    height: 400px;
+    width:319px;
+    padding:0;
+    margin:33px;
+    border-radius: 10px;
+    transition: all 0.7s ease;
+
+}
+.card img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+}
+.text-container{
+    position:absolute;
+    font-size: 1.2rem;
+    font-weight: 600;
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+
+    color: #03420f;
+    text-align: center;
+    margin-top: 10px;
+    background-color: #07200d99;
+    width: 100%;
+    height: 30%;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+}
+.card:hover img{
+    transform: scale(1.04);
+    transition: all 0.3s ease;
+}
+.card:hover{
+    box-shadow: 0 0 30px 0px #ffffff;
+    width:390px;
+    transition: all 1.1s ease;
+}
+.card:hover .text-container{
+    height:100%;
+    width:100%;
+    color: rgb(78, 255, 99);
+    -webkit-text-stroke: 2px rgb(0, 0, 0);
+    background-color: #07200d63;
+    transition: all 0.7s ease;
+}
+.card-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(2, 29, 3);
+    width: 100wh;
+    height:60vh;
+    margin:0;
+    padding: 47px;
+    border-radius: 30px;
+    
+}

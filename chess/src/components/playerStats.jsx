@@ -25,15 +25,14 @@ const playerStats = ({player,setPlayer,active,setGameOver}) => {
          <div className='pieces-taken'>
                {
                 player.takeOvers.length >0 ?
-                player.takeOvers.sort((a,b)=>a.value-b.value).map(element =>{
+                player.takeOvers.sort((a,b)=>a.value-b.value).map((element) =>{
                         return (
-                            <img
-                            height={40}
-                            className="piece"
-                            src={element.image}
-                            alt={element.name}
-                            key={element}
-                            /> 
+                          <img
+                          height={40}
+                          className="piece"
+                          src={element.image}
+                          alt={element.name}
+                          /> 
                         ) 
                 }) :<></>
                }
