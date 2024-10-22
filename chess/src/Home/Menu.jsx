@@ -6,7 +6,7 @@ import Pv3 from '../assets/1vs Computer.png'
 import Card from './Card'
 const Menu = () => {
   return (
-    <div className='card-container'>
+    <div className='card-mode-container'>
     <Card img={Pv2} text="Online"/>
     <Card img={Pv1} text="1 vs 1"/>
     <Card img={Pv3} text="1 vs Computer"/>
