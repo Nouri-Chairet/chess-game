@@ -2,7 +2,6 @@
     color: rgb(255, 255, 255);
     font-size: 1.5rem;
     font-weight: 900;
-    -webkit-text-stroke:1px #06015f;
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -11,12 +10,12 @@
 }
 .playerName {
     margin: 0;
+    font-weight: 900;
     text-transform: capitalize;
     text-align: center;
     letter-spacing: 0.12rem;
     font-size: 1.5rem;
     color: rgb(255, 255, 255);
-    -webkit-text-stroke: 1px #000000; 
 }
 .score{
     color: rgb(0, 0, 0);
@@ -33,7 +32,7 @@
     min-width:200px ;
     padding-top:20px;
     height: 240px;
-    background: hsla(24, 71%, 11%, 0.949);
+    background: hsla(176, 71%, 11%, 0.768);
     backdrop-filter: blur( 1px );
     display: flex;
     flex-direction: column;

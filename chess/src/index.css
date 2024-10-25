@@ -8,15 +8,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-image: url('./assetsD/pexels-pranjall-kumar-7849087.jpg'); */
-  background-repeat: no-repeat;
-  background-size: cover;
   background-position: center;
-  /* background-color: #1a1a1a; */
+  background-color: #050101;
   background-repeat: repeat;
   background-size: cover;
   height: 100vh;
   width:100wh;
+  overflow: hidden;
 }
 
 

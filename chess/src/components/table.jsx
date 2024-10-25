@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useContext}from 'react';
 import '../styles/table.css';
 import { sounds } from '../utilities/audio';
 import { isCheck } from '../utilities/utility.js';
@@ -8,9 +8,10 @@ import circle from '../assets/circle.svg';
 import { itemDataWhite, itemDataBlack } from '../utilities/constants';
 import PromotionChoices from './promotion.jsx';
 import { FenConverter } from '../utilities/FENconverter.js';
-import fetchNextMove from '../utilities/nextMove.js'
-const Table = React.memo(({board,setBoard,Player1,Player2,setPlayer1,setPlayer2,MovesHistory,setMovesHistory,currentPlayer,setCurrentPlayer,setGameOver,ComputerMode}) => {
-        
+import fetchNextMove from '../utilities/nextMove.js';
+import { ModeContext } from '../main.jsx';
+const Table = React.memo(({board,setBoard,Player1,Player2,setPlayer1,setPlayer2,MovesHistory,setMovesHistory,currentPlayer,setCurrentPlayer,setGameOver}) => {
+        const {mode}=useContext(ModeContext);
         const [possibleMoves, setPossibleMoves] = React.useState([]);
         const [selectedPiece,setSelectedPiece] =React.useState(null);
         const [fullMove,setFullMove]=React.useState(0);
@@ -63,7 +64,7 @@ const Table = React.memo(({board,setBoard,Player1,Player2,setPlayer1,setPlayer2,
                 sounds.promotion.play();
                 setSelectedPiece(null);
         };
-        if(ComputerMode){
+        if(mode === "1 vs Computer"){
                 if (currentPlayer.color === "black") {
                         fetchNextMove(FenConverter(board,currentPlayer.color,MovesHistory,fullMove))
                         .then(nextMove => {
@@ -157,7 +158,7 @@ return (
 
                                 }
                                 <div className='alpha'>
-                                        {Array.from({ length: 8 }, (_, i) => <p key={i}>{String.fromCharCode(i + 65)}</p>)}
+                                        {Array.from({ length: 8 }, (_, i) => <p key={i} className='alphapets'>{String.fromCharCode(i + 65)}</p>)}
                                 </div>
                         </div>
                 </div>

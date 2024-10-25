@@ -1,16 +1,14 @@
 
 .chess-table {
   background-color: #f7f7f7;
-  margin-left: 10vw;
   padding-top: 26px;
   padding-right: 26px;
   padding-bottom:8px;
   display: flex;
   flex-direction: row;
-  margin-top: 7vh;
   height:580px;
+  margin-top: 5vh;
   border: #000000 solid 2px;
-  /* box-shadow: #191919 7px 20px 17px 0px ; */
 }
 .chess-row {
   display: flex;
@@ -52,7 +50,7 @@ ul li{
   position: relative; 
 }
 
- p {
+.alphapets {
   font-size: 1rem;
   font-weight: 800;
   color: #000000; 
@@ -63,10 +61,10 @@ ul li{
 }
 
 .white {
-  background-color: #fff3ea;
+  background-color: #eafff5;
 }
 .brown {
-  background-color: #ae5224f8;
+  background-color: #094832cc;
 }
 .promotion-square{
   font-size: 1rem;
@@ -100,7 +98,6 @@ option  {
 }
 
 .animated-piece {
-  /* We'll use CSS transforms to smoothly transition between positions */
   position: absolute;
   top: 0;
   left: 0;

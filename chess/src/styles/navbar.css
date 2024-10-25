@@ -1,6 +1,6 @@
 
 .NavBar {
-  height:8vh;
+  height:7vh;
   width: 100%;
   display: flex;
   align-items: center; 
@@ -9,10 +9,9 @@
   top: 0;
   left: 0;
   z-index: 1;
-  background: #48210ef5;
-  /* -webkit-backdrop-filter: blur( 3px ); */
+  background: #033628f5;
+  -webkit-backdrop-filter: blur( 3px );
   backdrop-filter: blur( 2px );
-  box-shadow: 0 4px 12px 0px rgb(68, 25, 9);
 }
 
 .titles{
@@ -29,7 +28,7 @@
   align-items: center;
   justify-content: space-around;
   gap: 20px;
-  height: 8vh;
+  height: 6vh;
   margin-right:10px;
   width: fit-content;
   
@@ -42,7 +41,7 @@
 }
 .primary-button {
   padding: 0;
-  height: 8vh;
+  height: 6vh;
   width: fit-content;
   color: rgba(34, 18, 4, 0.972);
   cursor: pointer;

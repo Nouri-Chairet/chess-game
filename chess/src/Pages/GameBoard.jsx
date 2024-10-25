@@ -5,6 +5,7 @@ import './App.css';
 import PlayerStats from '../components/playerStats.jsx';
 import Table from '../components/table.jsx';
 import WinnerModal from '../components/EndGame.jsx';
+import StarsCanvas from '../Home/Stars.jsx';
 function GameBoard() {
   const [thisGame, setThisGame] = useState(() => {
     const game = new Game("player1", "player2");
@@ -37,7 +38,10 @@ function GameBoard() {
 };
   return (
     <>
-      <Navbar setComputerMode={setComputerMode}/>
+      <div style={{ position: 'absolute', height: '100vh', width: '100vw',zIndex:'0' }}>
+        <StarsCanvas number={10600} />
+      </div>
+      {/* <Navbar setComputerMode={setComputerMode}/> */}
       <div className='container'>
         <div className="players-stats">
           <PlayerStats player={player1} setPlayer={setPlayer1} active={activePlayer.color === player2.color }setGameOver={setGameOver} />

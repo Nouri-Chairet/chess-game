@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chess Piece, King
+* source:	https://sketchfab.com/3d-models/chess-piece-king-51dc45670f114c48a3f63cf2dd4f169c
+* author:	Csaba Baity (tsabszy) (https://sketchfab.com/tsabszy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chess Piece, King" (https://sketchfab.com/3d-models/chess-piece-king-51dc45670f114c48a3f63cf2dd4f169c) by Csaba Baity (tsabszy) (https://sketchfab.com/tsabszy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

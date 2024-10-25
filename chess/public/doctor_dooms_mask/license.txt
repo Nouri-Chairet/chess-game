@@ -1,0 +1,11 @@
+Model Information:
+* title:	Doctor Doom's Mask
+* source:	https://sketchfab.com/3d-models/doctor-dooms-mask-8db5464072f341a994ad1c729d9080f7
+* author:	Nicolas_Laube (https://sketchfab.com/Nicolas_Laube)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Doctor Doom's Mask" (https://sketchfab.com/3d-models/doctor-dooms-mask-8db5464072f341a994ad1c729d9080f7) by Nicolas_Laube (https://sketchfab.com/Nicolas_Laube) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
