@@ -4,10 +4,12 @@ import Header from '../Home/Header';
 import Menu from '../Home/Menu';
 import KingCanvas from '../Home/King.jsx';
 import StarsCanvas from '../Home/Stars.jsx';
+import ChessboardScene from '../Home/scene.jsx'
 
 const HomeScreen = () => {
   return (
     <div className='container-home'>
+      <ChessboardScene />
        <div style={{zIndex:'1'}}>
       <Header/>
       <Menu />

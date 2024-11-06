@@ -1,7 +1,7 @@
 import { isGameOver } from "./refere";
 import {isCheck} from "./utility"
 import { sounds } from '../utilities/audio';
-const capture=(takenPiece,setPlayer1,setPlayer2,currentPlayer)=>{
+const capture=(takenPiece,setPlayer1,setPlayer2,currentPlayer,mode)=>{
     if( currentPlayer.color=="black"){        
             setPlayer2(prev => ({
                     ...prev,
@@ -20,8 +20,14 @@ const capture=(takenPiece,setPlayer1,setPlayer2,currentPlayer)=>{
              setPlayer2(prev=>({...prev,score:prev.score-takenPiece.value}));
      }
 }
-export const makeAMove = (x,y,piece,board,setCurrentPlayer,setGameOver,setPossibleMoves,setBoard,setMovesHistory,currentPlayer,MovesHistory,setPlayer1,setPlayer2,setFullMove,Player1,Player2) =>{
+export const makeAMove = (x,y,piece,board,setCurrentPlayer,setGameOver,setPossibleMoves,setBoard,setMovesHistory,currentPlayer,MovesHistory,setPlayer1,setPlayer2,setFullMove,Player1,Player2,id="",gameId="",socket="",mode="",me="") =>{
     let takenPiece = board[y][x];
+    let nextMove={
+        sourceSquareY:piece.current_pos_x,
+        sourceSquareX:piece.current_pos_y,
+        destinationSquareY:x,
+        destinationSquareX:y
+    }
     return ()=>{  
     if(piece.color=="white"){
             setFullMove(prev=>prev+1);
@@ -49,14 +55,14 @@ export const makeAMove = (x,y,piece,board,setCurrentPlayer,setGameOver,setPossib
         rook.setCurrentPos(x==2?3:5,y);
         move="castle";
     }
-     if(MovesHistory.length>0){
-         let lastMove = MovesHistory[MovesHistory.length-1];
-         if (piece.name=="pawn" && piece.current_pos_x!=x && takenPiece==null){
+         if(MovesHistory.length>0){
+                 let lastMove = MovesHistory[MovesHistory.length-1];
+                 if (piece.name=="pawn" && piece.current_pos_x!=x && takenPiece==null){
                    capture(board[lastMove.newPos[1]][lastMove.newPos[0]],setPlayer1,setPlayer2,currentPlayer);
                    newBoard[lastMove.newPos[1]][lastMove.newPos[0]]=null;
                 move="capture"; 
         }
-        }
+          }
         let color = currentPlayer.color=="black" ? "white" : "black";
         setMovesHistory(prev=>([...prev,{ piece: piece.name, prevPos: [piece.current_pos_x, piece.current_pos_y], newPos: [x, y], takeOver: board[y][x] }]));
         newBoard[piece.current_pos_y][piece.current_pos_x]=null;
@@ -64,15 +70,20 @@ export const makeAMove = (x,y,piece,board,setCurrentPlayer,setGameOver,setPossib
         newBoard[y][x]=piece;
         if(isCheck(newBoard,color,MovesHistory)) {
                 move="check";
-            }
-            setBoard(newBoard);
-            setPossibleMoves([]);
-            if (isGameOver(newBoard, currentPlayer.color==Player1.color ? Player2 : Player1, MovesHistory, Player1, Player2) ) {
+        }
+        if(mode=="online" && me==currentPlayer.color){
+                console.log("emitting movePiece");
+
+                socket.emit("movePiece",{id:id,color:color,newboard:newBoard,gameId:gameId,movesHistory:[...MovesHistory,{piece: piece.name, prevPos: [piece.current_pos_x, piece.current_pos_y], newPos: [x, y], takeOver: board[y][x] }],nextMove:nextMove,move:move});
+        }
+        setBoard(newBoard);
+        setPossibleMoves([]);
+        if (isGameOver(newBoard, currentPlayer.color==Player1.color ? Player2 : Player1, MovesHistory, Player1, Player2) ) {
                     setGameOver(true);
                     sounds.end.play();
-            }
-            setCurrentPlayer(currentPlayer.color==Player1.color ? Player2 : Player1 );
-            sounds[move].play();
+        }
+        setCurrentPlayer(currentPlayer.color==Player1.color ? Player2 : Player1 );
+        sounds[move].play();
             
     }
     

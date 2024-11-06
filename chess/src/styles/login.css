@@ -1,0 +1,164 @@
+.login-container {
+    display: flex;
+    background-color: #000000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.login-form {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.login-form h1 {
+    color: #00ff00;
+    line-height: 50px;
+    margin-bottom: 40px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.input-with-icon {
+    display: flex;
+}
+
+.input-with-icon input {
+    flex: 1;
+    padding: 8px;
+}
+
+.chess-icon {
+    color: #00ff00;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    min-width: 400px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 9px;
+    background-color: #9fda81;
+    color: #013a07;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.input-group input:focus {
+    background-color: #d6ebdb;
+    border: none;
+}
+.login-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 9px;
+    background-color: #00ff00;
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #00cc00;
+}
+
+.social-login {
+    margin-top: 20px;
+    width: 90%;
+    text-align: center;
+}
+
+.social-login p {
+    margin-bottom: 10px;
+    color: #00ff00;
+}
+.txt{
+    color: #00ff00;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.google-button, .facebook-button {
+    padding: 4px;
+    border: none;
+    border-radius: 5px;
+    background-color: #323336;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    margin: 5px;
+}
+
+.google-button:hover {
+    background-color: #00cc00;
+    
+}
+.google-button:hover .icon-style{
+    color: #e0e4e4;
+    transform: scale(1.1);
+
+}
+.facebook-button:hover .icon-style{
+    color: #e0e4e4;
+    transform: scale(1.1);
+}
+
+.facebook-button:hover {
+    background-color: #00cc00;
+}
+.input-with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon .icon-style {
+    font-size: 24px; 
+    color: #ffffff;
+    margin-right: 8px;
+    transition: all 0.5s ease;
+    z-index: 3;
+
+}
+.social-login .icon-style{
+    font-size: 40px; 
+    color: #36ff4a;
+    transition: all 0.5s ease;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 9px;
+    background-color: #9fda81;
+    color: #013a07;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+

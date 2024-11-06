@@ -6,7 +6,11 @@ import PlayerStats from '../components/playerStats.jsx';
 import Table from '../components/table.jsx';
 import WinnerModal from '../components/EndGame.jsx';
 import StarsCanvas from '../Home/Stars.jsx';
+import { ModeContext } from '../main.jsx';
+import { useContext } from 'react';
 function GameBoard() {
+  const {mode}=useContext(ModeContext);
+
   const [thisGame, setThisGame] = useState(() => {
     const game = new Game("player1", "player2");
     game.initBoard();
@@ -18,10 +22,7 @@ function GameBoard() {
   const [player2, setPlayer2] = useState(thisGame.Player2);
   const [movesHistory, setMovesHistory] = useState(thisGame.MovesHistory);
   const [activePlayer, setActivePlayer] = useState(thisGame.currentPlayer);
-  const [GameOver, setGameOver] = useState(false);
-  const [ComputerMode,setComputerMode]=useState(true)
- 
-
+  const [GameOver, setGameOver] = useState(false); 
   const handleCloseModal = () => {
     setGameOver(false);
     setThisGame(()=>{
@@ -41,7 +42,6 @@ function GameBoard() {
       <div style={{ position: 'absolute', height: '100vh', width: '100vw',zIndex:'0' }}>
         <StarsCanvas number={10600} />
       </div>
-      {/* <Navbar setComputerMode={setComputerMode}/> */}
       <div className='container'>
         <div className="players-stats">
           <PlayerStats player={player1} setPlayer={setPlayer1} active={activePlayer.color === player2.color }setGameOver={setGameOver} />
@@ -60,7 +60,7 @@ function GameBoard() {
             setPlayer1={setPlayer1} setPlayer2={setPlayer2}
             currentPlayer={activePlayer} setCurrentPlayer={setActivePlayer} 
             setGameOver={setGameOver}
-            ComputerMode={ComputerMode}
+            mode={mode}
           />
        
       </div>

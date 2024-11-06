@@ -103,6 +103,31 @@ option  {
   left: 0;
   transition: transform 1.5s ease;
 }
+@media screen and (max-width: 1100px) {
+  .chess-table {
+    height: auto;
+    padding: 10px;
+  }
+  ul {
+    height: auto;
+  }
+  ul li {
+    width: 50px;
+    height: 50px;
+  }
+  .chess-cell {
+    width: 60px;
+    height: 60px;
+  }
+  .promotion-square {
+    width: 62px;
+    height: 62px;
+  }
+  option {
+    width: 60px;
+    height: 60px;
+  }
+}
 
 
 
