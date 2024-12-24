@@ -22,12 +22,11 @@ const Login = () => {
 
         try {
             const data = await loginUser(username, password);
-            alert(data.token);
             localStorage.setItem('token', data.token); 
             setSuccessMessage('Login successful!');
             navigate('/Home'); 
         } catch (error) {
-            setErrorMessage(error.response.data.error || 'An error occurred.'); // Handle errors
+            setErrorMessage(error.response.data.error || 'An error occurred.'); 
         }
     };
 

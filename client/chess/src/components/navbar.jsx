@@ -10,7 +10,7 @@ function Navbar() {
            <div className='titles'>
             
             <img id='icon' src={icon} alt="icon" />
-            {/* <p>Nouri chess</p> */}
+          
            </div>
            <div className='buttons-container'>
 

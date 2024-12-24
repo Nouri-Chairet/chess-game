@@ -38,23 +38,17 @@ export const isStalemate = (board, color, movesHistory) => {
     return false; // If in check, it's not stalemate
 };
 
-// Determine if the game is over due to checkmate, stalemate, or timers running out
 export const isGameOver = (board, currentPlayer, movesHistory, player1, player2) => {
-    // Checkmate: current player has no valid moves and is in check
     if (isCheckMate(board, currentPlayer.color, movesHistory)) {
         return true;
     }
 
-    // Stalemate: current player is not in check but has no valid moves
     if (isStalemate(board, currentPlayer.color, movesHistory)) {
         return true;
     }
 
-    // Timers run out
     if (currentPlayer.timer<1) {
         return true;
     }
-
-    // The game is not over
     return false;
 };

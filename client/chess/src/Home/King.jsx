@@ -1,7 +1,9 @@
 import React from 'react';
 import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useGLTF, useAnimations } from "@react-three/drei";
+
+import { OrbitControls, Preload } from '@react-three/drei';
 
 const King = () => {
   const king = useGLTF('./doctor_dooms_mask/scene.gltf');

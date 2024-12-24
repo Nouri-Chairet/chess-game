@@ -9,7 +9,6 @@ const fetchNextMove = async (fen) => {
                  fen:fen,
                  depth:15
             }});
-        console.log(response.data);
         if (response.data.success){
 
             return response.data.bestmove;

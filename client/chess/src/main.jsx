@@ -7,6 +7,7 @@ import HomeScreen from './Pages/HomeScreen.jsx'
 import Navbar from './components/navbar.jsx'
 import Login from './Pages/login.jsx'
 import OnlineMode from './Pages/OnlineMode.jsx'
+import Register from './Pages/Register.jsx'
 export const ModeContext=createContext();
 const App = () => {
   const [mode, setMode] = useState('default');
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/Home' element={<HomeScreen />} /> 
           <Route path='/play' element={<GameBoard />} />
           <Route path='/online' element={<OnlineMode />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </BrowserRouter>
       </ModeContext.Provider>
