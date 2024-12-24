@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const Game = require('./models/game');
 const User = require('./models/user'); // Ensure you import the User model
 const authRoutes = require('./routes/auth');
+const registerRoutes = require('./routes/register');
 const authenticate = require('./middleware/authenticate');
 const updateGameRoutes = require('./routes/updateGame');
 
@@ -24,6 +25,7 @@ app.use(express.json());
 // Routes
 app.use('/api/games', updateGameRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/register', registerRoutes);
 app.get('/api/protected', authenticate, (req, res) => {
   res.json({ message: 'This is a protected route', userId: req.userId });
 });
