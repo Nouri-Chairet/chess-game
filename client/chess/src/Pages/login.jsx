@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { loginUser } from '../utils/api'; // Adjust the import path accordingly
 import '../styles/login.css';
 import img from '../assets/1vs1.png';
@@ -6,7 +6,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { gsap } from 'gsap';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -14,6 +15,10 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        gsap.from(".login-container", { duration: 1, opacity: 0, y: -50 });
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -64,6 +69,7 @@ const Login = () => {
                     {successMessage && <p style={{color:'green',fontSize:'16px',fontWeight:'500',textAlign:"center",marginBottom:"17px"}}>{successMessage}</p>}
                     <button type="submit" className="login-button">Login</button>
                 </form>
+                <p style={{ color: 'white', fontSize: '16px', fontWeight: '500', textAlign: "center", marginTop: "17px" }}>Don't have an account? <Link to="/register" style={{ color: '#09d309' }}>Register</Link></p>
                 <div className="social-login">
                     <p className='txt'>Or login with</p>
                     <button className="google-button">                        <GoogleIcon className="icon-style" />
